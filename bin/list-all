@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+list_of_versions=$(
+	git ls-remote --heads --sort=version:refname --tags https://git.savannah.gnu.org/git/nano.git \
+	| awk -F'/v|\\^' '{ if (!seen[$2]++) print $2 }'
+)
+
+echo $list_of_versions

@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+install_nano() {
+	local version=$1
+	local install_path=$2
+	local concurrency=$3
+
+	local default_config="--enable-utf8"
+	local config="${ASDF_NANO_CONFIG:-${default_config}}"
+
+	if [[ -z "$TMPDIR" ]]; then
+		local tmp_download_dir="$(mktemp -d -t asdf_nano_build_XXXXXX)"
+	else
+		local tmp_download_dir="$TMPDIR"
+	fi
+
+	# path to the repo
+	local source_path=$(get_download_file_path $version $tmp_download_dir)
+	echo $source_path
+	download_source_file $version $source_path
+
+	# running this in subshell
+	# we don't want to disturb current working dir
+	(
+		if ! type "git" &> /dev/null; then
+			echo "ERROR: git not found"
+			exit 1
+		fi
+		
+		cd "$source_path" || exit 1
+
+		./autogen.sh
+
+		if [[ "${version}" =~ ^[0-9]+\.* ]] ; then
+			# if version is a release number, remove specific files to prevent showing the git revision as the nano's version.
+			rm -rf .git roll-a-release.sh
+		fi
+
+		local configure_option="--prefix=${install_path} $config"
+		echo "configure option: $configure_option"
+
+		./configure $configure_option || exit 1
+
+		make -j "$concurrency" || exit 1
+		make install || exit 1
+		make clean all
+	)
+}
+
+download_source_file() {
+	local version=$1
+	local download_path=$2
+	local download_url="https://git.savannah.gnu.org/git/nano.git"
+
+	if [[ "${version}" =~ ^[0-9]+\.* ]] ; then
+		# if version is a release number, prepend v
+		version="v$version"
+	fi
+
+	git clone --depth=1 --branch=${version} "${download_url}" "${download_path}"
+}
+
+get_download_file_path() {
+	local version=$1
+	local tmp_download_dir=$2
+
+	echo "$tmp_download_dir/nano-$version"
+}
+
+install_nano $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH $ASDF_CONCURRENCY
