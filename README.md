@@ -1,4 +1,4 @@
-# asdf-nano
+# asdf-nano [![GitHub Actions Status](https://github.com/mfakane/asdf-nano/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/mfakane/asdf-nano/actions)
 
 [GNU nano](https://www.nano-editor.org/) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager.
 
