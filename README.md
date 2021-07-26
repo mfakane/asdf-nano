@@ -11,7 +11,8 @@ Forked from [tsuyoshicho/asdf-vim](https://github.com/tsuyoshicho/asdf-vim).
 The plugin can be install using the following command.
 
 ```sh
-asdf plugin add nano https://github.com/mfakane/asdf-nano.git
+asdf plugin add nano
+# or asdf plugin add nano https://github.com/mfakane/asdf-nano.git
 asdf install nano <version>
 ```
 
