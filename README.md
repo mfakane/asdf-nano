@@ -23,7 +23,7 @@ asdf install nano <version>
 ### .tool-versions file
 
 You can specify the version to install with a line like so in your .tool-versions file:
-nano <version>
+`nano <version>`
 
 ### Using the CLI
 
