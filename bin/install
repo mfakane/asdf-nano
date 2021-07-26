@@ -1,9 +1,29 @@
 #!/usr/bin/env bash
 
+check_requirements() {
+	for command in \
+		"autoconf" \
+		"automake" \
+		"autopoint" \
+		"gcc" \
+		"gettext" \
+		"git" \
+		"groff" \
+		"make" \
+		"pkg-config"; do
+		if ! type $command >& /dev/null; then
+			echo "ERROR: $command not found"
+			exit 1
+		fi
+	done
+}
+
 install_nano() {
 	local version=$1
 	local install_path=$2
 	local concurrency=$3
+
+	check_requirements
 
 	local default_config="--enable-utf8"
 	local config="${ASDF_NANO_CONFIG:-${default_config}}"
