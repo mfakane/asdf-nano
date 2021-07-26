@@ -77,7 +77,7 @@ download_source_file() {
 		version="v$version"
 	fi
 
-	git clone --depth=1 --branch=${version} "${download_url}" "${download_path}"
+	git -c advice.detachedHead=false clone --depth=1 --branch=${version} "${download_url}" "${download_path}"
 }
 
 get_download_file_path() {
