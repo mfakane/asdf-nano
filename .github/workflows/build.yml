@@ -23,7 +23,7 @@ jobs:
           ruby-version: 2.6
       - name: Install Homebrew dependencies (on macOS)
         if: matrix.os == 'macOS-latest'
-        run: env HOMEBREW_NO_AUTO_UPDATE=1 brew install automake groff
+        run: env HOMEBREW_NO_AUTO_UPDATE=1 brew install automake groff texinfo
       - name: Install apt dependencies (on ubuntu)
         if: matrix.os == 'ubuntu-latest'
         run: DEBIAN_FRONTEND=noninteractive sudo apt-get install -y autopoint gettext groff texinfo
