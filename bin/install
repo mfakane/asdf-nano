@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 check_requirements() {
+	local missing_deps=()
+
 	for command in \
 		"autoconf" \
 		"automake" \
@@ -12,10 +14,14 @@ check_requirements() {
 		"make" \
 		"pkg-config"; do
 		if ! type $command >& /dev/null; then
-			echo "ERROR: $command not found"
-			exit 1
+			missing_deps+=($command)
 		fi
 	done
+
+	if [[ ${#missing_deps[*]} -gt 0 ]]; then
+		echo "ERROR: missing dependency: ${missing_deps[@]}"
+		exit 1
+	fi
 }
 
 install_nano() {
