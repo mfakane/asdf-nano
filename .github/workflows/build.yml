@@ -30,7 +30,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: DEBIAN_FRONTEND=noninteractive sudo apt-get install -y autopoint gettext groff texinfo
       - name: asdf plugin test
-        uses: asdf-vm/actions/plugin-test@v1
+        uses: asdf-vm/actions/plugin-test@v2
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
