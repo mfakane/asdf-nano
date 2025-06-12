@@ -27,7 +27,7 @@ You can specify the version to install with a line like so in your .tool-version
 
 ### Using the CLI
 
-You can then set the local/global version to your new version with `asdf local nano <version>` or `asdf global nano <version>`.
+You can then set the local/global version to your new version with `asdf set <version>` or `asdf set -u nano <version>`.
 
 ## Use
 
