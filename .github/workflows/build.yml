@@ -16,7 +16,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup ruby (on macOS)
         if: matrix.os == 'macOS-latest'
