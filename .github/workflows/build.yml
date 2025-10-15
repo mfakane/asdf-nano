@@ -40,4 +40,4 @@ jobs:
           command: nano --version
           github_token: ${{ secrets.GITHUB_TOKEN }}
           giturl: ${{ github.workspace }}
-          gitref: ${{ github.sha }}
+          gitref: ${{ github.head_ref }}
