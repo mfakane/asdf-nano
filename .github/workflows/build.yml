@@ -40,5 +40,5 @@ jobs:
           command: nano --version
           github_token: ${{ secrets.GITHUB_TOKEN }}
           giturl: ${{ github.workspace }}
-          gitref: ${{ github.head_ref }}
+          gitref: ${{ github.sha }}
           version: "1.21.0" # latest version as of 2025-10-09
