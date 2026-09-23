@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - name: Prepare plugin test ref
+        run: git branch --force plugin-test HEAD
+
       - name: Setup ruby (on macOS)
         if: matrix.os == 'macOS-latest'
         uses: ruby/setup-ruby@v1
@@ -40,5 +43,5 @@ jobs:
           command: nano --version
           github_token: ${{ secrets.GITHUB_TOKEN }}
           giturl: ${{ github.workspace }}
-          gitref: ${{ github.sha }}
+          gitref: plugin-test
           version: "1.21.0" # latest version as of 2025-10-09
