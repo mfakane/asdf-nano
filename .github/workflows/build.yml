@@ -25,7 +25,7 @@ jobs:
         if: matrix.os == 'macOS-latest'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.7
+          ruby-version: 4.0.8
     
       - name: Install Homebrew dependencies (on macOS)
         if: matrix.os == 'macOS-latest'
